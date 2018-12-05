@@ -24,15 +24,13 @@ export const getAlbumTracks = albumId => {
 }
 
 export const storeData = async (key, value) => {
-    debugger;
     const stringifyValue = JSON.stringify(value);
 
     try {
         await AsyncStorage.setItem(key, stringifyValue);
-        debugger;
         return value;
     } catch (error) {
-        console.log(error);
+        // Error saving Data
         
     }
     
@@ -40,13 +38,9 @@ export const storeData = async (key, value) => {
 
 export const retrieveData = async (key) => {
     try {
-        
         const value = await AsyncStorage.getItem(key);
         if (value !== null) {
-            
-            debugger;
-            const parsedValue = JSON.parse(value);
-            return JSON.parse(value);
+            return JSON.parse(value);;
         }
     } catch (error) {
         // Error retrieving data
@@ -58,6 +52,6 @@ export const clearStorage = async () => {
         await AsyncStorage.clear();
         return true;
     } catch (error) {
-        
+        // Error retrieving data
     }
 }

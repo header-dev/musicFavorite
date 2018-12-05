@@ -26,7 +26,6 @@ export default class StorageScreen extends React.Component {
         }
         const value = await actions.storeData('someKey', data);
         if (value) {
-            debugger;
             console.log(value);
         }
     }
@@ -37,13 +36,13 @@ export default class StorageScreen extends React.Component {
             value: ''
         });
 
-        const data = await actions.retrieveData('someKey');
+        const data = await actions.retrieveData('favoriteAlbums');
 
         if (data) {
             debugger;
-            this.setState({
-                value: data.value
-            })
+            // this.setState({
+            //     value: data.value
+            // })
         }
     }
 
@@ -52,7 +51,6 @@ export default class StorageScreen extends React.Component {
         const success = await actions.clearStorage();
 
         if (success) {
-            debugger;
             this.setState({
                 value: ''
             });
