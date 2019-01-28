@@ -26,13 +26,13 @@ const menuList = [
     title: "Favorite Collections",
     subtitle: "Access your favorite music",
     icon: "heart",
-    navigateTo: "#"
+    navigateTo: "Favorite"
   },
   {
     title: "Settings",
     subtitle: "Customize your app",
     icon: "cog",
-    navigateTo: "#"
+    navigateTo: "Settings"
   }
 ];
 
@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-          <List containerStyle={{ backgroundColor: '#eaeaea',marginTop: 0, marginBottom: 0}}>
+          <List containerStyle={{ backgroundColor: '#eaeaea',marginTop: 0, marginBottom: 35,paddingBottom: 20, }}>
             {
               menuList.map((item, index) => {
                 return (
@@ -52,7 +52,7 @@ export default class HomeScreen extends React.Component {
                     title={item.title}
                     >
                     <View style={styles.cardView} >
-                      <Text style={{ marginBottom: 10 }}>{item.subtitle}</Text>
+                      <Text>{item.subtitle}</Text>
                       <Icon 
                         raised
                         name={item.icon}
@@ -75,7 +75,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#eaeaea'
   },
   cardView:{
     alignItems: 'center'

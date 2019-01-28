@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, ActivityIndicator,View,Alert } from "react-native";
-import { Card, Button,Icon } from 'react-native-elements';
+import { Card, Button, Icon, List } from 'react-native-elements';
 import { CardList } from '../components/CardList';
 import {  SearchText } from '../components/SearchText';
 import * as actions from '../actions';
@@ -31,7 +31,6 @@ export default class AlbumsScreen extends React.Component {
 
   async saveAlbumToFavorite(album){
     const favoriteAlbums = await actions.retrieveData('favoriteAlbums') || {};
-
     if (favoriteAlbums[album.id]) {
       Alert.alert(
         'Cannot add Album',
@@ -59,8 +58,6 @@ export default class AlbumsScreen extends React.Component {
 
   renderButtonNavigation(album){
     const {artist} = this.state;
-
-
     return (
       <View style={styles.buttonNavigation}>
         <Icon onPress={() => {}} 
@@ -75,12 +72,14 @@ export default class AlbumsScreen extends React.Component {
           type="font-awesome"
           color="#f50"
           size={30} />
-        <Icon onPress={() => this.saveAlbumToFavorite(album)}
+        <Icon 
           raised
           name="thumbs-up"
           type="font-awesome"
           color="#f50"
-          size={30} />
+          size={30}
+          onPress={() => this.saveAlbumToFavorite(album)}
+          />
       </View>
     );
   }
@@ -92,11 +91,13 @@ export default class AlbumsScreen extends React.Component {
       <ScrollView style={styles.container}>
         <SearchText submitSearch={this.searchTracks}></SearchText>
         { albums.length > 0 && !isFetching && 
-        <CardList data={albums}
+        <List containerStyle={{paddingBottom: 30,}}>
+          <CardList data={albums}
           imageKey={'cover_big'}
           titleKey={'title'}
           buttonText="See the detail"
           buttonView={this.renderButtonNavigation}></CardList>
+        </List>
         }{albums.length === 0 && isFetching &&
           <View style={{
             flex: 1,
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   buttonNavigation:{
     flexDirection: 'row',

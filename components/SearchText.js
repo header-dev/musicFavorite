@@ -34,7 +34,7 @@ export class SearchText extends React.Component {
             </FormLabel>
             <FormInput ref={input => this.input = input} onChangeText={event => this.onChange(event)} />
             <FormValidationMessage></FormValidationMessage>
-            <Button title="Search" small icon={{ name: "search" }} backgroundColor="#E91E64" onPress={() => this.onSubmitSearch()} />
+            <Button title="Search" rounded small icon={{ name: "search" }} backgroundColor="#E91E64" onPress={() => this.onSubmitSearch()} />
           </React.Fragment>;
     }
 }
